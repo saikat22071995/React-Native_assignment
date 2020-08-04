@@ -1,0 +1,12 @@
+{
+  "name": "phoneEmail",
+  "displayName": "phoneEmail",
+  "expo": {
+    "name": "phoneEmail",
+    "slug": "phoneEmail",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

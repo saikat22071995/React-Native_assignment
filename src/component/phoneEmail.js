@@ -30,7 +30,6 @@ class PhoneEmail extends Component {
           {this.state.phone!=='' && this.state.active==='phone' && (
                      <PhoneInput style={styles.inputIcon} 
                      initialCountry="in"
-                     onChangePhoneNumber={this.setValue}
                      ></PhoneInput>
                 )}
             <TextInput style={styles.inputs}

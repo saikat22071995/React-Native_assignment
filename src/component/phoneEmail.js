@@ -12,6 +12,7 @@ class PhoneEmail extends Component {
       focus:false
     };
   }
+
   setValue=(value)=>{
       console.log( value)
       let phoneno = /^[0-9]+$/;
@@ -32,18 +33,27 @@ class PhoneEmail extends Component {
             <View style={styles.inputContainer}>
               
           {this.state.phone!=='' && this.state.active==='phone' && this.state.keyboardTypee==='phone-pad' && (
-                     <PhoneInput style={styles.inputIcon} 
+                     <PhoneInput  style={styles.inputs} 
                      initialCountry="in"
+                     value={this.state.phone}
+                     onChangePhoneNumber={this.setValue}
+                     focus
+                     autoFormat={true}
                      ></PhoneInput>
                 )}
-            <TextInput style={styles.inputs}
-                placeholder="Enter Phone Number/ Email"
-                value={this.state.phone}
-                key={this.state.keyboardTypee=='phone-pad' ? 'input-phone' : 'input-default'}
-                keyboardType={this.state.keyboardTypee}
-                onChangeText={this.setValue}
-                autoFocus={this.state.focus}
-            />
+                {
+                    this.state.active==='email' &&  (
+                        <TextInput style={styles.inputs}
+                        placeholder="Enter Parents Email/ Number"
+                        value={this.state.phone}
+                        key={this.state.keyboardTypee=='phone-pad' ? 'input-phone' : 'input-default'}
+                        keyboardType={this.state.keyboardTypee}
+                        onChangeText={this.setValue}
+                        autoFocus={this.state.focus}
+                    />
+                    )
+                }
+          
             </View>
       </View>
     );
@@ -96,7 +106,7 @@ let styles = StyleSheet.create({
   inputs: {
     height: 45,
     width:250,
-    marginLeft: 16,
+    marginLeft:15,
     marginRight: 15,
     borderBottomColor: '#286038',
     flex: 1,

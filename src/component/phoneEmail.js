@@ -8,16 +8,20 @@ class PhoneEmail extends Component {
     this.state = {
       phone:'',
       active:'email',
-      keyboardTypee:'default'
+      keyboardTypee:'default',
+      focus:false
     };
   }
   setValue=(value)=>{
       console.log( value)
       let phoneno = /^[0-9]+$/;
+      var chars = /^[A-Za-z]+$/;
       if (value.match(phoneno)) {
-        this.setState({phone:value,active:'phone',keyboardTypee:'phone-pad'})
+        this.setState({phone:value,active:'phone',keyboardTypee:'phone-pad',focus:true})
+      }else if(value.match(chars)){
+        this.setState({phone:value,active:'email',keyboardTypee:'email-address',focus:true})   
       }else{
-        this.setState({phone:value,active:'email',keyboardTypee:'default'})   
+        this.setState({phone:value,active:'email',keyboardTypee:'email-address',focus:true})   
       }
       
   }
@@ -27,7 +31,7 @@ class PhoneEmail extends Component {
       <View style={styles.container}>
             <View style={styles.inputContainer}>
               
-          {this.state.phone!=='' && this.state.active==='phone' && (
+          {this.state.phone!=='' && this.state.active==='phone' && this.state.keyboardTypee==='phone-pad' && (
                      <PhoneInput style={styles.inputIcon} 
                      initialCountry="in"
                      ></PhoneInput>
@@ -38,7 +42,7 @@ class PhoneEmail extends Component {
                 key={this.state.keyboardTypee=='phone-pad' ? 'input-phone' : 'input-default'}
                 keyboardType={this.state.keyboardTypee}
                 onChangeText={this.setValue}
-                autoFocus={true}
+                autoFocus={this.state.focus}
             />
             </View>
       </View>
@@ -84,7 +88,7 @@ let styles = StyleSheet.create({
     elevation: 5,
   },
   inputIcon: {
-    width: 10,
+    width: 30,
     height: 30,
     marginLeft:25,
     justifyContent: 'center'
@@ -92,17 +96,16 @@ let styles = StyleSheet.create({
   inputs: {
     height: 45,
     width:250,
-    marginLeft: 30,
+    marginLeft: 16,
     marginRight: 15,
     borderBottomColor: '#286038',
-    flex: 0,
+    flex: 1,
     backgroundColor:'white',
     fontWeight:'bold',
-    borderBottomRightRadius:20,
-    borderTopLeftRadius:20,
-    borderBottomLeftRadius:0,
-    borderTopRightRadius:0,
+    borderBottomRightRadius:10,
+    borderTopLeftRadius:10,
+    borderBottomLeftRadius:10,
+    borderTopRightRadius:5,
   },
 });
-
-module.exports = PhoneEmail;
+export default PhoneEmail

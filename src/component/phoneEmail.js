@@ -57,7 +57,6 @@ class PhoneEmail extends Component {
                         <TextInput style={styles.inputs}
                         placeholder="Enter Parents Email/ Number"
                         value={this.state.phoneandemail}
-                        key={this.state.keyboardLayout=='phone-pad' ? 'input-phone' : 'input-default'}
                         keyboardType={this.state.keyboardLayout}
                         onChangeText={this.setValue}
                         autoFocus={this.state.focus}

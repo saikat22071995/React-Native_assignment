@@ -1,12 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import PhoneEmail from './src/component/phoneEmailFunctinalComp'
+import PhoneEmail from './src/component/phoneEmail'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      
       <StatusBar style="auto" />
       <PhoneEmail />
     </View>

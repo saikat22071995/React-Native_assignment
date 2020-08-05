@@ -67,18 +67,6 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  info: {
-    // width: 200,
-    borderRadius: 5,
-    backgroundColor: "#1E90FF",
-    padding: 10,
-    marginTop: 20,
-    width:300
-  },
-  button: {
-    marginTop: 20,
-    padding: 10
-  },
   inputContainer: {
     borderRadius: 5,
     width: 350,

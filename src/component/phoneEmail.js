@@ -85,12 +85,6 @@ let styles = StyleSheet.create({
 
     elevation: 5,
   },
-  inputIcon: {
-    width: 30,
-    height: 30,
-    marginLeft:25,
-    justifyContent: 'center'
-  },
   inputs: {
     height: 45,
     width:250,

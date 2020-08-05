@@ -1,60 +1,63 @@
 import React, { Component } from "react";
-import { StyleSheet,View,TextInput } from "react-native";
+import { StyleSheet,View,TextInput,Alert,Button } from "react-native";
 import PhoneInput from "react-native-phone-input";
 
 class PhoneEmail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      phone:'',
+      phoneandemail:'',
       active:'email',
-      keyboardTypee:'default',
+      keyboardLayout:'email-address',
       focus:false
     };
   }
-
   setValue=(value)=>{
       console.log( value)
       let phoneno = /^[0-9]+$/;
       var chars = /^[A-Za-z]+$/;
       if (value.match(phoneno)) {
-        this.setState({phone:value,active:'phone',keyboardTypee:'phone-pad',focus:true})
+        this.setState({phoneandemail:value,active:'phone',keyboardLayout:'phone-pad',focus:true})
       }else if(value.match(chars)){
-        this.setState({phone:value,active:'email',keyboardTypee:'email-address',focus:true})   
+        this.setState({phoneandemail:value,active:'email',keyboardLayout:'email-address',focus:true})   
       }else{
-        this.setState({phone:value,active:'email',keyboardTypee:'email-address',focus:true})   
+        this.setState({phoneandemail:value,active:'email',keyboardLayout:'email-address',focus:true})   
       }
-      
   }
+//   showData=()=>{
+//       Alert.alert(this.state.phoneandemail)
+//   }
   render() {
-      console.log(this.state.phone,this.state.keyboardTypee)
+      console.log(this.state.phoneandemail,this.state.keyboardLayout)
     return (
       <View style={styles.container}>
             <View style={styles.inputContainer}>
               
-          {this.state.phone!=='' && this.state.active==='phone' && this.state.keyboardTypee==='phone-pad' && (
-                     <PhoneInput  style={styles.inputs} 
+          {this.state.phoneandemail!=='' && this.state.active==='phone' && this.state.keyboardLayout==='phone-pad' && (
+                     <PhoneInput 
+                     style={styles.inputs} 
                      initialCountry="in"
-                     value={this.state.phone}
+                     value={this.state.phoneandemail}
                      onChangePhoneNumber={this.setValue}
-                     focus
+                     focus={true}
                      autoFormat={true}
                      ></PhoneInput>
                 )}
                 {
-                    this.state.active==='email' &&  (
+                    this.state.active==='email' && this.state.keyboardLayout==='email-address' && (
                         <TextInput style={styles.inputs}
                         placeholder="Enter Parents Email/ Number"
-                        value={this.state.phone}
-                        key={this.state.keyboardTypee=='phone-pad' ? 'input-phone' : 'input-default'}
-                        keyboardType={this.state.keyboardTypee}
+                        value={this.state.phoneandemail}
+                        key={this.state.keyboardLayout=='phone-pad' ? 'input-phone' : 'input-default'}
+                        keyboardType={this.state.keyboardLayout}
                         onChangeText={this.setValue}
                         autoFocus={this.state.focus}
+                        autoCompleteType={'email'}
                     />
                     )
                 }
-          
             </View>
+            {/* <Button title="Show " onPress={()=>{this.showData()}}></Button> */}
       </View>
     );
   }
@@ -97,7 +100,7 @@ let styles = StyleSheet.create({
     borderBottomRightRadius:10,
     borderTopLeftRadius:10,
     borderBottomLeftRadius:10,
-    borderTopRightRadius:5,
+    borderTopRightRadius:10,
   },
 });
 export default PhoneEmail
